@@ -1,12 +1,20 @@
-from models.database import create_db, save_to_db, get_users, user_contacts, gt
+import os
+
+import models.create_database as db_creator
+from models.create_database import add_user
+from models.database import DATABASE_NAME
+from models.hash import check_password
 
 if __name__ == "__main__":
-    # create_db()
-    # save_to_db('cendy', '123')
-    user_contacts()
-    # u = get_users()
-    # print(u)
-    # print(type(u))
-    u = gt()
-    for i in u:
-        print(i)
+    if not os.path.exists(DATABASE_NAME):
+        db_creator.create_database()
+
+u = check_password('obobileva', '%9To')
+print(u)
+print(check_password('obobileva', '%8To'))
+add_user('obobileva', '%8To')
+# print(type(u))
+# print(list(u))
+# print(u.password)
+# for i in u:
+#     print(i.password)
